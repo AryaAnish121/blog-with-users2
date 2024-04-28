@@ -17,9 +17,6 @@ app.config['SECRET_KEY'] = os.environ.get("FLASK_KEY")
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
-# TODO: Configure Flask-Login
-
-
 # CREATE DATABASE
 class Base(DeclarativeBase):
     pass
@@ -138,7 +135,6 @@ def logout():
 
 @app.route('/')
 def get_all_posts():
-    print(current_user.is_authenticated)
     result = db.session.execute(db.select(BlogPost))
     posts = result.scalars().all()
     return render_template("index.html", all_posts=posts)
@@ -162,7 +158,6 @@ def show_post(post_id):
         else:
             flash("You need to be logged in to comment.")
             return redirect(url_for("login"))
-    print(requested_post.comments)
     return render_template("post.html", post=requested_post, form=form)
 
 
