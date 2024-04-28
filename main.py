@@ -27,6 +27,8 @@ db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+# small change
+
 gravatar = Gravatar(app,
                     size=100,
                     rating='g',
