@@ -71,7 +71,7 @@ class Comment(db.Model):
     comment_author = relationship("User", back_populates="comments")
     author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('users.id'), nullable=False)
     parent_post = relationship("BlogPost", back_populates="comments")
-    parent_post_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('blog_posts.id'))
+    parent_post_id: Mapped[int] = mapped_column(Integer, db.ForeignKey('blog_posts.id'), nullable=True)
 
 @login_manager.user_loader
 def load_user(user_id):
